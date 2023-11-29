@@ -8,6 +8,14 @@
 
 using namespace std;
 
+#define MAX_BONE_INFLUENCE 4
+
+struct Texture {
+    unsigned int id;
+    string type;
+    string path;
+};
+
 class Mesh
 {
 public:
