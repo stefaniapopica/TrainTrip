@@ -28,6 +28,20 @@
 
 class Shader
 {
+public:
+
+    unsigned int ID;
+    Shader(const char* vertexPath, const char* fragmentPath, const char* geometryPath = nullptr);
+    void use();
+    void setBool(const std::string& name, bool value) const;
+
+private:
+	void checkCompileErrors(GLuint shader, std::string type);
+
+
+
+
+
 };
 
 #endif
