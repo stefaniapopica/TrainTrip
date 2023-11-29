@@ -70,6 +70,10 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>D:\FACULTATE_AN_2\G3D\TrainTrip\TrainTrip\TrainTrip\Resources\include\glm\glm;D:\FACULTATE_AN_2\G3D\TrainTrip\TrainTrip\TrainTrip\Resources\include\glfw-3.3.4.bin.WIN32\include\GLFW;D:\FACULTATE_AN_2\G3D\TrainTrip\TrainTrip\TrainTrip\Resources\include\glad\include;D:\FACULTATE_AN_2\G3D\TrainTrip\TrainTrip\TrainTrip\Resources\include\freeglut\include\GL;D:\FACULTATE_AN_2\G3D\TrainTrip\TrainTrip\TrainTrip\Resources\include\glew-2.1.0\include;D:\FACULTATE_AN_2\G3D\TrainTrip\TrainTrip\TrainTrip\Resources\include\stb-master\stb-master;D:\FACULTATE_AN_2\G3D\TrainTrip\TrainTrip\TrainTrip\Resources\include\assimp\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\FACULTATE_AN_2\G3D\TrainTrip\TrainTrip\TrainTrip\Resources\include\freeglut\lib;D:\FACULTATE_AN_2\G3D\TrainTrip\TrainTrip\TrainTrip\Resources\include\glfw-3.3.4.bin.WIN32\lib-vc2019;D:\FACULTATE_AN_2\G3D\TrainTrip\TrainTrip\TrainTrip\Resources\include\assimp\lib;D:\FACULTATE_AN_2\G3D\TrainTrip\TrainTrip\TrainTrip\Resources\include\glew-2.1.0\lib\Release\Win32;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
