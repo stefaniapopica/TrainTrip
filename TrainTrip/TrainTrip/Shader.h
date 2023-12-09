@@ -26,6 +26,10 @@
 #include <sstream>
 
 
+#pragma comment (lib, "glfw3dll.lib")
+#pragma comment (lib, "glew32.lib")
+#pragma comment (lib, "OpenGL32.lib")
+
 class Shader
 {
 public:
@@ -42,6 +46,9 @@ public:
     void setVec3(const std::string& name, float x, float y, float z) const;
     void setVec4(const std::string& name, const glm::vec4& value) const;
     void setVec4(const std::string& name, float x, float y, float z, float w);
+    void setMat2(const std::string& name, const glm::mat2& mat) const;
+    void setMat3(const std::string& name, const glm::mat3& mat) const;
+    void setMat4(const std::string& name, const glm::mat4& mat) const;
 
 private:
 	void checkCompileErrors(GLuint shader, std::string type);
