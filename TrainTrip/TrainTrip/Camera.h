@@ -64,6 +64,7 @@ public:
         Pitch = pitch;
         updateCameraVectors();
     }
+    void printPosition();
 private:
 
     void updateCameraVectors();
