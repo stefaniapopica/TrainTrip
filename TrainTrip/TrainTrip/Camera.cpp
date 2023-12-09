@@ -1,5 +1,14 @@
 #include "Camera.h"
 
+glm::mat4 Camera::GetViewMatrix()
+{
+	return glm::lookAt(Position, Position + Front, Up);
+}
+void Camera::setViewMatrix(glm::vec3 pos)
+{
+	Position = pos;
+}
+
 void Camera::updateCameraVectors()
 {
 	// calculate the new Front vector
