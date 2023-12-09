@@ -6,6 +6,9 @@
 #include <string>
 #include <vector>
 
+
+#include "Shader.h"
+
 using namespace std;
 
 #define MAX_BONE_INFLUENCE 4
@@ -47,7 +50,7 @@ public:
     // constructor
     Mesh(vector<Vertex> vertices, vector<unsigned int> indices, vector<Texture> textures);
 
-   
+    void Draw(Shader& shader);
 
 private:
     unsigned int VBO, EBO;

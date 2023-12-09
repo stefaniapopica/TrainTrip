@@ -10,6 +10,14 @@ Mesh::Mesh(vector<Vertex> vertices, vector<unsigned int> indices, vector<Texture
     setupMesh();
 }
 
+void Mesh::Draw(Shader& shader)
+{
+    unsigned int diffuseNr = 1;
+    unsigned int specularNr = 1;
+    unsigned int normalNr = 1;
+    unsigned int heightNr = 1;
+}
+
 void Mesh::setupMesh()
 {
     glGenVertexArrays(1, &VAO);
