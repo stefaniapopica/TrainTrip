@@ -12,10 +12,20 @@
 
 #include <string>
 #include <vector>
+using namespace std;
 
 class Model
 {
 public:
+    vector<Texture> textures_loaded;
+    vector<Mesh> meshes;
+    string directory;
+    bool gammaCorrection;
+
+    Model(string const& path, bool gamma = false);
+    void Draw(Shader& shader);
+    unsigned int TextureFromFile(const char* path, const string& directory, bool gamma = false);
+
 private:
     void loadModel(string const& path);
     void processNode(aiNode* node, const aiScene* scene);
