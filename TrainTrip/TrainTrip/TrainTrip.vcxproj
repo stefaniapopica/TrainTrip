@@ -71,8 +71,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>D:\FACULTATE_AN_2\G3D\TrainTrip\TrainTrip\TrainTrip\Resources\include\glm\glm;D:\FACULTATE_AN_2\G3D\TrainTrip\TrainTrip\TrainTrip\Resources\include\glfw-3.3.4.bin.WIN32\include\GLFW;D:\FACULTATE_AN_2\G3D\TrainTrip\TrainTrip\TrainTrip\Resources\include\glad\include;D:\FACULTATE_AN_2\G3D\TrainTrip\TrainTrip\TrainTrip\Resources\include\freeglut\include\GL;D:\FACULTATE_AN_2\G3D\TrainTrip\TrainTrip\TrainTrip\Resources\include\glew-2.1.0\include;D:\FACULTATE_AN_2\G3D\TrainTrip\TrainTrip\TrainTrip\Resources\include\stb-master\stb-master;D:\FACULTATE_AN_2\G3D\TrainTrip\TrainTrip\TrainTrip\Resources\include\assimp\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\FACULTATE_AN_2\G3D\TrainTrip\TrainTrip\TrainTrip\Resources\include\freeglut\lib;D:\FACULTATE_AN_2\G3D\TrainTrip\TrainTrip\TrainTrip\Resources\include\glfw-3.3.4.bin.WIN32\lib-vc2019;D:\FACULTATE_AN_2\G3D\TrainTrip\TrainTrip\TrainTrip\Resources\include\assimp\lib;D:\FACULTATE_AN_2\G3D\TrainTrip\TrainTrip\TrainTrip\Resources\include\glew-2.1.0\lib\Release\Win32;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\TrainTrip\TrainTrip\TrainTrip\Resources\include\glm\glm;..\TrainTrip\TrainTrip\TrainTrip\Resources\include\glfw-3.3.4.bin.WIN32\include\GLFW;..\TrainTrip\TrainTrip\TrainTrip\Resources\include\glad\include;..\TrainTrip\TrainTrip\TrainTrip\Resources\include\freeglut\include\GL;..\TrainTrip\TrainTrip\TrainTrip\Resources\include\glew-2.1.0\include;..\TrainTrip\TrainTrip\TrainTrip\Resources\include\stb-master\stb-master;..\TrainTrip\TrainTrip\TrainTrip\Resources\include\assimp\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\TrainTrip\TrainTrip\TrainTrip\Resources\include\freeglut\lib;..\TrainTrip\TrainTrip\TrainTrip\Resources\include\glfw-3.3.4.bin.WIN32\lib-vc2019;..\TrainTrip\TrainTrip\TrainTrip\Resources\include\assimp\lib;..\TrainTrip\TrainTrip\TrainTrip\Resources\include\glew-2.1.0\lib\Release\Win32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -133,11 +133,15 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Model.cpp" />
+    <ClCompile Include="Shader.cpp" />
     <ClCompile Include="TrainTrip.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Model.h" />
+    <ClInclude Include="Shader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
