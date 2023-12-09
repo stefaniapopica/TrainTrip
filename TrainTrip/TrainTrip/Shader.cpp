@@ -59,3 +59,19 @@ void Shader::setVec4(const std::string& name, float x, float y, float z, float w
 	glUniform4f(glGetUniformLocation(ID, name.c_str()), x, y, z, w);
 }
 
+
+void Shader::checkCompileErrors(GLuint shader, std::string type)
+{
+	GLint success;
+	GLchar infoLog[1024];
+	if (type != "PROGRAM")
+	{
+		glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
+		if (!success)
+		{
+			glGetShaderInfoLog(shader, 1024, NULL, infoLog);
+			std::cout << "ERROR::SHADER_COMPILATION_ERROR of type: " << type << "\n" << infoLog << "\n -- --------------------------------------------------- -- " << std::endl;
+		}
+	}
+	
+}
