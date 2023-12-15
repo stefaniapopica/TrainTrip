@@ -172,6 +172,15 @@ vector<Texture> Model::loadMaterialTextures(aiMaterial* mat, aiTextureType type,
             }
         }
         
+        if (!skip)
+        {
+            Texture texture;
+            texture.id = TextureFromFile(str.C_Str(), this->directory, false);
+            texture.type = typeName;
+            texture.path = str.C_Str();
+            textures.push_back(texture);
+            textures_loaded.push_back(texture);
+        }
     }
     return textures;
 }
