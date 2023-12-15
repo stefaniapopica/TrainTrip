@@ -68,7 +68,18 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath, const char* geo
 		checkCompileErrors(geometry, "GEOMETRY");
 	}
 
-
+	// shader Program
+	ID = glCreateProgram();
+	glAttachShader(ID, vertex);
+	glAttachShader(ID, fragment);
+	if (geometryPath != nullptr)
+		glAttachShader(ID, geometry);
+	glLinkProgram(ID);
+	checkCompileErrors(ID, "PROGRAM");
+	glDeleteShader(vertex);
+	glDeleteShader(fragment);
+	if (geometryPath != nullptr)
+		glDeleteShader(geometry);
 }
 
 void Shader::use()
