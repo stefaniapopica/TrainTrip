@@ -156,6 +156,7 @@
     <None Include="default.vs" />
     <None Include="lamp.fs" />
     <None Include="model.fs" />
+    <None Include="model.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
