@@ -55,3 +55,13 @@ void Camera::ProcessMouseScroll(float yoffset)
 	if (Zoom > 70.0f)
 		Zoom = 70.0f;
 }
+
+void Camera::ProcessMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch)
+{
+	xoffset *= MouseSensitivity;
+	yoffset *= MouseSensitivity;
+
+	Yaw += xoffset;
+	Pitch += yoffset;
+
+}
