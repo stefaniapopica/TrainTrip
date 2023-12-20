@@ -71,8 +71,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Resources\include\glm\glm;C:\Resources\include\glfw-3.3.4.bin.WIN32\include\GLFW;C:\Resources\include\glad\include;C:\Resources\include\freeglut\include\GL;C:\Resources\include\glew-2.1.0\include;C:\Resources\include\stb-master\stb-master;C:\Resources\include\assimp\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Resources\include\freeglut\lib;C:\Resources\include\glfw-3.3.4.bin.WIN32\lib-vc2019;C:\Resources\include\assimp\lib;C:\Resources\include\glew-2.1.0\lib\Release\Win32;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\TrainTrip\Resources\include\glm\glm;..\TrainTrip\Resources\include\glfw-3.3.4.bin.WIN32\include\GLFW;..\TrainTrip\Resources\include\glad\include;..\TrainTrip\Resources\include\freeglut\include\GL;..\TrainTrip\Resources\include\glew-2.1.0\include;..\TrainTrip\Resources\include\stb-master\stb-master;..\TrainTrip\Resources\include\assimp\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\TrainTrip\Resources\include\freeglut\lib;..\TrainTrip\Resources\include\glfw-3.3.4.bin.WIN32\lib-vc2019;..\TrainTrip\Resources\include\assimp\lib;..\TrainTrip\Resources\include\glew-2.1.0\lib\Release\Win32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>C:\Resources\include\glm\glm;C:\Resources\include\glfw-3.3.4.bin.WIN32\include\GLFW;C:\Resources\include\glad\include;C:\Resources\include\freeglut\include\GL;C:\Resources\include\glew-2.1.0\include;C:\Resources\include\stb-master\stb-master;C:\Resources\include\assimp\include;$(IncludePath)</IncludePath>
