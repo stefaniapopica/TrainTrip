@@ -155,6 +155,7 @@
     <None Include="default.fs" />
     <None Include="default.vs" />
     <None Include="lamp.fs" />
+    <None Include="lamp.vs" />
     <None Include="model.fs" />
     <None Include="model.vs" />
     <None Include="PhongLight.fs" />
