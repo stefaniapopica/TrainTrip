@@ -52,5 +52,11 @@
     <None Include="model.fs" />
     <None Include="model.vs" />
     <None Include="PhongLight.vs" />
+    <None Include="lamp.vs" />
+    <None Include="PhongLight.fs" />
+    <None Include="ShadowMapping.fs" />
+    <None Include="ShadowMapping.vs" />
+    <None Include="ShadowMappingDepth.fs" />
+    <None Include="ShadowMappingDepth.vs" />
   </ItemGroup>
 </Project>

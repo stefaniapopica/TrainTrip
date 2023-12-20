@@ -155,10 +155,15 @@
     <None Include="default.fs" />
     <None Include="default.vs" />
     <None Include="lamp.fs" />
+    <None Include="lamp.vs" />
     <None Include="model.fs" />
     <None Include="model.vs" />
     <None Include="PhongLight.fs" />
     <None Include="PhongLight.vs" />
+    <None Include="ShadowMapping.fs" />
+    <None Include="ShadowMapping.vs" />
+    <None Include="ShadowMappingDepth.fs" />
+    <None Include="ShadowMappingDepth.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
