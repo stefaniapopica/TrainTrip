@@ -20,5 +20,12 @@ void  main()
 
     vec3 lightDir=normalize(lightPos-FragPos);
     vec3 diffuse=lightColor*kd*max(dot(Normal,lightDir),0.0);
+    
+    vec3 viewDir=normalize(viewPos-FragPos);
+    vec3 reflectDir=reflect(-lightDir,normalize(Normal));
+    float specFactor=pow(max(dot(viewDir,reflectDir),0.0),n);
+    vec3 specular=ks*specFactor*lightColor;
+
+    FragColor = vec4(ambient+diffuse+specular,1.0)*vec4(objectColor, 1.0);
 
 }
