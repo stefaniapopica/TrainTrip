@@ -157,6 +157,7 @@
     <None Include="lamp.fs" />
     <None Include="model.fs" />
     <None Include="model.vs" />
+    <None Include="PhongLight.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
