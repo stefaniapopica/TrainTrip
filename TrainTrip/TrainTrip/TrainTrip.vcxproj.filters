@@ -58,5 +58,7 @@
     <None Include="ShadowMapping.vs" />
     <None Include="ShadowMappingDepth.fs" />
     <None Include="ShadowMappingDepth.vs" />
+    <None Include="skybox.vs" />
+    <None Include="skybox.fs" />
   </ItemGroup>
 </Project>
