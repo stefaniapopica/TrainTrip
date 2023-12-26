@@ -16,7 +16,14 @@ uniform vec3 viewPos;
 
 float ShadowCalculation(vec4 FragPosLightSpace)
 {
+    vec3 projCoords = fragPosLightSpace.xyz / fragPosLightSpace.w;
+    projCoords = projCoords * 0.5 + 0.5;
+    float closestDepth = texture(shadowMap, projCoords.xy).r; 
+    float currentDepth = projCoords.z;
+    vec3 normal = normalize(fs_in.Normal);
+    vec3 lightDir = normalize(lightPos - fs_in.FragPos);
 
+    
 
 }
 
