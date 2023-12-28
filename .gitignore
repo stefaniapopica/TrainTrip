@@ -396,3 +396,5 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+!..\TrainTrip\Resources\include\glew-2.1.0\lib\Release\Win32
