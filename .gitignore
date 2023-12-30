@@ -399,3 +399,6 @@ FodyWeavers.xsd
 
 !Resources\include\glew-2.1.0\lib\Release\Win32
 !Resources
+!TrainTrip\Debug\Assimp32.dll
+!TrainTrip\Debug\glew32.dll
+!TrainTrip\Debug\glfw3.dll
