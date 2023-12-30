@@ -4,6 +4,7 @@
 
 
 #define GLM_ENABLE_EXPERIMENTAL
+#include <glad/glad.h>
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -14,7 +15,6 @@
 #include <sstream>
 #include <vector>
 
-#include <glad/glad.h>
 #include <glfw3.h>
 
 
