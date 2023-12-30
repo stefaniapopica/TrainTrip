@@ -24,6 +24,14 @@ unsigned int loadCubemap(std::vector<std::string> faces);
 glm::vec3 moveTrain(float& X, float& Y, float& Z, float& DegreesY, float& DegreesZ);
 
 
+const unsigned int SCR_WIDTH = 1920;
+const unsigned int SCR_HEIGHT = 1080;
+float speed = 1.0f;
+
+// camera
+Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
+float lastX = (float)SCR_WIDTH / 2.0;
+
 
 int main()
 {
