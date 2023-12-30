@@ -357,45 +357,45 @@ int main()
 		bvSign.Draw(bucSignShader);
 
 
-		// 1. render depth of scene to texture (from light's perspective)
-		// --------------------------------------------------------------
-			glm::mat4 lightProjection, lightView;
-		glm::mat4 lightSpaceMatrix;
-		float near_plane = 1.0f, far_plane = 7.5f;
-		//lightProjection = glm::perspective(glm::radians(45.0f), (GLfloat)SHADOW_WIDTH / (GLfloat)SHADOW_HEIGHT, near_plane, far_plane); // note that if you use a perspective projection matrix you'll have to change the light position as the current light position isn't enough to reflect the whole scene
-		lightProjection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f, near_plane, far_plane);
-		lightView = glm::lookAt(lightPos, glm::vec3(0.0f), glm::vec3(0.0, 1.0, 0.0));
-		lightSpaceMatrix = lightProjection * lightView;
-		// render scene from light's point of view
-		simpleDepthShader.use();
-		simpleDepthShader.setMat4("lightSpaceMatrix", lightSpaceMatrix);
+		//// 1. render depth of scene to texture (from light's perspective)
+		//// --------------------------------------------------------------
+		//	glm::mat4 lightProjection, lightView;
+		//glm::mat4 lightSpaceMatrix;
+		//float near_plane = 1.0f, far_plane = 7.5f;
+		////lightProjection = glm::perspective(glm::radians(45.0f), (GLfloat)SHADOW_WIDTH / (GLfloat)SHADOW_HEIGHT, near_plane, far_plane); // note that if you use a perspective projection matrix you'll have to change the light position as the current light position isn't enough to reflect the whole scene
+		//lightProjection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f, near_plane, far_plane);
+		//lightView = glm::lookAt(lightPos, glm::vec3(0.0f), glm::vec3(0.0, 1.0, 0.0));
+		//lightSpaceMatrix = lightProjection * lightView;
+		//// render scene from light's point of view
+		//simpleDepthShader.use();
+		//simpleDepthShader.setMat4("lightSpaceMatrix", lightSpaceMatrix);
 
-		glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
-		glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
-		glClear(GL_DEPTH_BUFFER_BIT);
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, cubemapTexture);
-		
+		//glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
+		//glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
+		//glClear(GL_DEPTH_BUFFER_BIT);
+		//glActiveTexture(GL_TEXTURE0);
+		//glBindTexture(GL_TEXTURE_2D, cubemapTexture);
+		//
 
-		// reset viewport
-		glViewport(0, 0, SCR_WIDTH, SCR_HEIGHT);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		//// reset viewport
+		//glViewport(0, 0, SCR_WIDTH, SCR_HEIGHT);
+		//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		// 2. render scene as normal using the generated depth/shadow map  
-		
-		glViewport(0, 0, SCR_WIDTH, SCR_HEIGHT);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		shader.use();
-		shader.setMat4("projection", projection);
-		shader.setMat4("view", view);
-		// set light uniforms
-		shader.setVec3("viewPos", camera.Position);
-		shader.setVec3("lightPos", lightPos);
-		shader.setMat4("lightSpaceMatrix", lightSpaceMatrix);
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, cubemapTexture);
-		glActiveTexture(GL_TEXTURE1);
-		glBindTexture(GL_TEXTURE_2D, depthMap);
+		//// 2. render scene as normal using the generated depth/shadow map  
+		//
+		//glViewport(0, 0, SCR_WIDTH, SCR_HEIGHT);
+		//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		//shader.use();
+		//shader.setMat4("projection", projection);
+		//shader.setMat4("view", view);
+		//// set light uniforms
+		//shader.setVec3("viewPos", camera.Position);
+		//shader.setVec3("lightPos", lightPos);
+		//shader.setMat4("lightSpaceMatrix", lightSpaceMatrix);
+		//glActiveTexture(GL_TEXTURE0);
+		//glBindTexture(GL_TEXTURE_2D, cubemapTexture);
+		//glActiveTexture(GL_TEXTURE1);
+		//glBindTexture(GL_TEXTURE_2D, depthMap);
 
 
 		if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS) // driver camera
