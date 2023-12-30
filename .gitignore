@@ -398,3 +398,4 @@ FodyWeavers.xsd
 *.sln.iml
 
 !Resources\include\glew-2.1.0\lib\Release\Win32
+!Resources
