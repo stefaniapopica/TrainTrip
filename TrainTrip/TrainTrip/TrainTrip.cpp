@@ -15,6 +15,14 @@
 
 namespace fs = std::filesystem;
 
+void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+void mouse_callback(GLFWwindow* window, double xpos, double ypos);
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
+void processInput(GLFWwindow* window);
+unsigned int loadTexture(const char* path);
+unsigned int loadCubemap(std::vector<std::string> faces);
+glm::vec3 moveTrain(float& X, float& Y, float& Z, float& DegreesY, float& DegreesZ);
+
 
 
 int main()
