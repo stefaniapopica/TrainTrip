@@ -247,6 +247,11 @@ int main()
 
 		// input
 		// -----
+		if (glfwGetKey(window, GLFW_KEY_ENTER) == GLFW_PRESS) // start train
+			start = 1;
+		if (glfwGetKey(window, GLFW_KEY_BACKSPACE) == GLFW_PRESS) // stop train
+			start = 0;
+
 		processInput(window);
 
 		lightingShader.use();
@@ -306,18 +311,37 @@ int main()
 		glm::mat4 _bucSign = glm::mat4(1.0f);
 
 		// train
-		startY += 0.3f;
-		if (!start)
-			train = glm::translate(train, glm::vec3(startX, startY, startZ));
-		else
-			train = glm::translate(train, moveTrain(startX, startY, startZ, rotY, rotZ));
-		startY -= 0.3f;
+		//startY += 0.3f;
+		//if (!start)
+		//	train = glm::translate(train, glm::vec3(startX, startY, startZ));
+		//else
+		//	train = glm::translate(train, moveTrain(startX, startY, startZ, rotY, rotZ));
+		//startY -= 0.3f;
 
-		train = glm::scale(train, glm::vec3(7.05f, 7.05f, 7.05f)); // make it a little bigger							   
-		train = glm::rotate(train, glm::radians(90.0f + rotY), glm::vec3(0, 1, 0)); // train starts at 90 degrees rotation to face forward
+		//train = glm::scale(train, glm::vec3(7.05f, 7.05f, 7.05f)); // make it a little bigger							   
+		//train = glm::rotate(train, glm::radians(90.0f + rotY), glm::vec3(0, 1, 0)); // train starts at 90 degrees rotation to face forward
+		//train = glm::rotate(train, glm::radians(0.0f + rotZ), glm::vec3(0, 0, 1));
+		//trainShader.setMat4("model", train);
+		//driverWagon.Draw(trainShader);
+
+		glm::vec3 trainPosition;
+		if (start) {
+			// If 'start' is true, move the train
+			trainPosition = moveTrain(startX, startY, startZ, rotY, rotZ);
+		}
+		else {
+			// Keep the train stationary
+			trainPosition = glm::vec3(startX, startY, startZ);
+		}
+
+		// Update train's position and render
+		train = glm::translate(train, trainPosition);
+		train = glm::scale(train, glm::vec3(7.05f, 7.05f, 7.05f));
+		train = glm::rotate(train, glm::radians(90.0f + rotY), glm::vec3(0, 1, 0));
 		train = glm::rotate(train, glm::radians(0.0f + rotZ), glm::vec3(0, 0, 1));
 		trainShader.setMat4("model", train);
 		driverWagon.Draw(trainShader);
+
 
 
 		// terrain
@@ -395,7 +419,6 @@ int main()
 		//glBindTexture(GL_TEXTURE_2D, cubemapTexture);
 		//glActiveTexture(GL_TEXTURE1);
 		//glBindTexture(GL_TEXTURE_2D, depthMap);
-		glm::vec3 trainPosition = moveTrain(startX, startY, startZ, rotY, rotZ);
 
 
 		if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS) // driver camera
@@ -404,10 +427,10 @@ int main()
 			key = 2;
 		if (glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS) // free camera
 			key = 3;
-		if (glfwGetKey(window, GLFW_KEY_ENTER) == GLFW_PRESS) // start train
-			start = 1;
-		if (glfwGetKey(window, GLFW_KEY_BACKSPACE) == GLFW_PRESS) // stop train
-			start = 0;
+		//if (glfwGetKey(window, GLFW_KEY_ENTER) == GLFW_PRESS) // start train
+		//	start = 1;
+		//if (glfwGetKey(window, GLFW_KEY_BACKSPACE) == GLFW_PRESS) // stop train
+		//	start = 0;
 
 		switch (key)
 		{
