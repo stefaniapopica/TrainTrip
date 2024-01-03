@@ -34,8 +34,6 @@ bool firstMouse = true;
 float deltaTime = 0.0f;
 float lastFrame = 0.0f;
 
-
-
 int main()
 {
 
@@ -397,6 +395,7 @@ int main()
 		//glBindTexture(GL_TEXTURE_2D, cubemapTexture);
 		//glActiveTexture(GL_TEXTURE1);
 		//glBindTexture(GL_TEXTURE_2D, depthMap);
+		glm::vec3 trainPosition = moveTrain(startX, startY, startZ, rotY, rotZ);
 
 
 		if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS) // driver camera
@@ -412,14 +411,13 @@ int main()
 
 		switch (key)
 		{
+
 		case 1:
-			if (!start)
-				camera.setViewMatrix(glm::vec3(-260.0f, -2.0f, 167.0f));
-			else
-				key = 2;
+			camera.setViewMatrix(glm::vec3(startX +8, startY + 19, startZ -38));
+
 			break;
 		case 2:
-			camera.setViewMatrix(glm::vec3(startX - 15, startY + 50, startZ + 100));
+			camera.setViewMatrix(glm::vec3(startX , startY + 50, startZ + 100));
 			break;
 		default:
 			break;
