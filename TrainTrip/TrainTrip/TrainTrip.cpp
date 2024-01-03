@@ -1,4 +1,4 @@
-#include <filesystem>
+﻿#include <filesystem>
 #include <vector>
 //#include <freeglut.h>
 
@@ -38,6 +38,7 @@ float lastFrame = 0.0f;
 
 int main()
 {
+
 	std::cout << "<ENTER> Start the train movement\n<BACKSPACE> Stop the train movement\n<1> Driver Camera\n<2> Outside Camera\n<3> Free Camera\n<+> Increase train speed\n<-> Decrease train speed\n";
 
 	// glfw: initialize and configure
@@ -307,14 +308,14 @@ int main()
 		glm::mat4 _bucSign = glm::mat4(1.0f);
 
 		// train
-		startY += 10.0f;
+		startY += 0.3f;
 		if (!start)
 			train = glm::translate(train, glm::vec3(startX, startY, startZ));
 		else
 			train = glm::translate(train, moveTrain(startX, startY, startZ, rotY, rotZ));
-		startY -= 10.0f;
+		startY -= 0.3f;
 
-		train = glm::scale(train, glm::vec3(0.05f, 0.05f, 0.05f)); // make it a little bigger							   
+		train = glm::scale(train, glm::vec3(7.05f, 7.05f, 7.05f)); // make it a little bigger							   
 		train = glm::rotate(train, glm::radians(90.0f + rotY), glm::vec3(0, 1, 0)); // train starts at 90 degrees rotation to face forward
 		train = glm::rotate(train, glm::radians(0.0f + rotZ), glm::vec3(0, 0, 1));
 		trainShader.setMat4("model", train);
