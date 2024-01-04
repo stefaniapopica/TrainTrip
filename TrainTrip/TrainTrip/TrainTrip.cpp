@@ -159,8 +159,8 @@ int main()
 
 	Model driverWagon(localPath.string() + "/Resources/train/tren/emd-gp40-2/textures/loco.obj");
 	Model terrain(localPath.string() + "/Resources/terrain/terrain.obj");
-	Model station(localPath.string() + "/Resources/station/milwaukeeroaddepot.obj");
-	Model secondStation(localPath.string() + "/Resources/station/milwaukeeroaddepot.obj");
+	Model station(localPath.string() + "/Resources/station/source/god-knows.obj");
+	Model secondStation(localPath.string() + "/Resources/station/source/god-knows.obj");
 	Model bvSign(localPath.string() + "/Resources/station/bvSign/ExitSign_HiPoly.obj");
 	Model bucSign(localPath.string() + "/Resources/station/bucSign/ExitSign_HiPoly.obj");
 	// configure depth map FBO
@@ -352,30 +352,30 @@ int main()
 		terrain.Draw(terrainShader);
 
 		// start station
-		_station = glm::translate(_station, glm::vec3(-320.0f, -17.0f, 180.0f));
-		_station = glm::scale(_station, glm::vec3(0.03f, 0.03f, 0.03f));
+		_station = glm::translate(_station, glm::vec3(-390.0f, 40.0f, 276.0f)); // am micsorat z s a dat in dreapta // am micsorat x  s a dat in spate
+		_station = glm::scale(_station, glm::vec3(0.12f, 0.12f, 0.12f));
 		_station = glm::rotate(_station, glm::radians(90.0f), glm::vec3(0, 1, 0));
 		stationShader.setMat4("model", _station);
 		station.Draw(stationShader);
 
 		// end station
-		_ndStation = glm::translate(_ndStation, glm::vec3(-90.0f, 22.0f, -1860.0f));
-		_ndStation = glm::scale(_ndStation, glm::vec3(0.03f, 0.03f, 0.03f));
-		_ndStation = glm::rotate(_ndStation, glm::radians(10.0f), glm::vec3(0, 1, 0));
+		_ndStation = glm::translate(_ndStation, glm::vec3(-170.0f, 83.0f, -1890.0f));
+		_ndStation = glm::scale(_ndStation, glm::vec3(0.12f, 0.12f, 0.12f));
+		_ndStation = glm::rotate(_ndStation, glm::radians(3.0f), glm::vec3(0, 1, 0));
 		ndStationShader.setMat4("model", _ndStation);
 		secondStation.Draw(ndStationShader);
 
 		// bucuresti sign
-		_bucSign = glm::translate(_bucSign, glm::vec3(-291.0f, 55.0f, 180.0f));
-		_bucSign = glm::scale(_bucSign, glm::vec3(7.0f, 7.0f, 7.0f));
+		_bucSign = glm::translate(_bucSign, glm::vec3(-291.0f, 50.0f, 188.0f));
+		_bucSign = glm::scale(_bucSign, glm::vec3(9.0f, 10.0f, 15.0f));
 		_bucSign = glm::rotate(_bucSign, glm::radians(90.0f), glm::vec3(0, 1, 0));
 		bucSignShader.setMat4("model", _bucSign);
 		bucSign.Draw(bvSignShader);
 
 		// brasov sign
-		_bvSign = glm::translate(_bvSign, glm::vec3(-85.0f, 93.5f, -1831.0f));
-		_bvSign = glm::scale(_bvSign, glm::vec3(7.0f, 7.0f, 7.0f));
-		_bvSign = glm::rotate(_bvSign, glm::radians(10.0f), glm::vec3(0, 1, 0));
+		_bvSign = glm::translate(_bvSign, glm::vec3(-77.0f, 93.5f, -1795.0f));
+		_bvSign = glm::scale(_bvSign, glm::vec3(20.0f, 10.0f, 70.0f));
+		_bvSign = glm::rotate(_bvSign, glm::radians(0.0f), glm::vec3(0, 1, 0));
 		bvSignShader.setMat4("model", _bvSign);
 		bvSign.Draw(bucSignShader);
 
