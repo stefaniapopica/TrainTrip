@@ -41,13 +41,13 @@ struct Vertex {
 class Mesh
 {
 public:
-    // mesh Data
+    
     vector<Vertex>       vertices;
     vector<unsigned int> indices;
     vector<Texture>      textures;
     unsigned int VAO;
 
-    // constructor
+    
     Mesh(vector<Vertex> vertices, vector<unsigned int> indices, vector<Texture> textures);
 
     void Draw(Shader& shader);

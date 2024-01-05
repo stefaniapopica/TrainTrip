@@ -1,0 +1,32 @@
+newmtl Wingsfeathers_7ffbe486-1c3b-45ca-9968-39a8333e5c65
+Kd 1.000 1.000 1.000
+d 1.000
+map_Kd eagle_Wingsfeathers_BaseColor.jpg
+newmtl Nabb_475c650f-2cf5-4d52-b919-b16bfe45d963
+Kd 1.000 1.000 1.000
+d 1.000
+map_Kd base_color_texture.jpg
+newmtl Eyes_4ff2da60-dd2e-4e48-ba39-3b646e99e8a2
+Kd 1.000 1.000 1.000
+d 1.000
+map_Kd base_color_texture_3.jpg
+newmtl Mainbody_74394f3e-a0db-4c25-a592-ed730fb12fbb
+Kd 1.000 1.000 1.000
+d 1.000
+map_Kd base_color_texture_1.jpg
+newmtl backfeathers_93459a70-caad-4b83-b9d1-1867230a471e
+Kd 1.000 1.000 1.000
+d 1.000
+map_Kd base_color_texture_2.jpg
+newmtl Feet_d01af8cd-0fcf-4d42-951e-ed9d82e10295
+Kd 1.000 1.000 1.000
+d 1.000
+map_Kd base_color_texture_4.jpg
+newmtl Winngs_fb774c02-32fa-4489-8891-00fc560fd00c
+Kd 1.000 1.000 1.000
+d 1.000
+map_Kd base_color_texture_5.jpg
+newmtl Nabb2_22a107d6-07e5-4ad7-aee8-2456e13266d1
+Kd 1.000 1.000 1.000
+d 1.000
+map_Kd base_color_texture_6.jpg

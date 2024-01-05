@@ -39,7 +39,6 @@ int main()
 	std::cout << "<ENTER> Start the train movement\n<BACKSPACE> Stop the train movement\n<1> Driver Camera\n<2> Outside Camera\n<3> Free Camera\n<+> Increase train speed\n<-> Decrease train speed\n";
 
 	// glfw: initialize and configure
-	// ------------------------------
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -52,7 +51,6 @@ int main()
 	float rotY = 0, rotZ = 0;
 
 	// glfw window creation
-	// --------------------
 	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Bucharest to Brasov", NULL, NULL);
 	if (window == NULL)
 	{
@@ -69,7 +67,6 @@ int main()
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 	// glad: load all OpenGL function pointers
-	// ---------------------------------------
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{
 		std::cout << "Failed to initialize GLAD" << std::endl;
@@ -77,7 +74,6 @@ int main()
 	}
 
 	// configure global opengl state
-	// -----------------------------
 	glEnable(GL_DEPTH_TEST);
 
 	float skyboxVertices[] = {
@@ -128,7 +124,6 @@ int main()
 	glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
 
 	// build and compile shaders
-	// -------------------------
 	Shader skyboxShader("skybox.vs", "skybox.fs");
 	Shader trainShader("model.vs", "model.fs");
 	Shader terrainShader("model.vs", "model.fs");
@@ -159,7 +154,6 @@ int main()
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 
 	// load textures
-	// -------------
 	fs::path localPath = fs::current_path();
 	std::string textureFolder = localPath.string() + "/Resources/Textures";
 
@@ -170,15 +164,14 @@ int main()
 	Model bvSign(localPath.string() + "/Resources/station/bvSign/ExitSign_HiPoly.obj");
 	Model bucSign(localPath.string() + "/Resources/station/bucSign/ExitSign_HiPoly.obj");
 	Model bearModel(localPath.string() + "/Resources/other/bear/source/model.obj");
-	Model grass1Model(localPath.string() + "/Resources/other/other/abandoned_building/source/Daskalio200K.obj");
-	Model grass2Model(localPath.string() + "/Resources/other/grass2/source/Grass 02.obj");
-	Model grass3Model(localPath.string() + "/Resources/other/other/abandoned_building/source/Daskalio200K.obj");
+	Model grass1Model(localPath.string() + "/Resources/other/abandoned_building/Project Name.obj");
+	Model grass2Model(localPath.string() + "/Resources/other/grass2/Project Name.obj");
+	Model grass3Model(localPath.string() + "/Resources/other/grass3/Well-Handle_Finish.obj");
 	Model tree1Model(localPath.string() + "/Resources/other/tree2/Project Name.obj");
 	Model tree2Model(localPath.string() + "/Resources/other/tree1/Project Name.obj");
 
 
 	// configure depth map FBO
-	// -----------------------
 	const unsigned int SHADOW_WIDTH = 1024, SHADOW_HEIGHT = 1024;
 	unsigned int depthMapFBO;
 	glGenFramebuffers(1, &depthMapFBO);
@@ -201,7 +194,6 @@ int main()
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 	// shader configuration
-		// --------------------
 	shader.Shader::use();
 	shader.Shader::setInt("diffuseTexture", 0);
 	shader.Shader::setInt("shadowMap", 1);
@@ -243,17 +235,14 @@ int main()
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 	// render loop
-	// -----------
 	while (!glfwWindowShouldClose(window))
 	{
 		// per-frame time logic
-		// --------------------
 		float currentFrame = glfwGetTime();
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
 
 		// input
-		// -----
 		if (glfwGetKey(window, GLFW_KEY_ENTER) == GLFW_PRESS) // start train
 			start = 1;
 		if (glfwGetKey(window, GLFW_KEY_BACKSPACE) == GLFW_PRESS) // stop train
@@ -277,7 +266,7 @@ int main()
 		glm::mat4 model = glm::mat4(1.0f);
 		lightingShader.setMat4("model", model);
 
-		// also draw the lamp object
+		// draw the lamp object
 		lightCubeShader.use();
 		lightCubeShader.setMat4("projection", projection);
 		lightCubeShader.setMat4("view", view);
@@ -290,7 +279,6 @@ int main()
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 
 		// render
-		// ------
 		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -327,15 +315,13 @@ int main()
 
 		glm::vec3 trainPosition;
 		if (start) {
-			// If 'start' is true, move the train
 			trainPosition = moveTrain(startX, startY, startZ, rotY, rotZ);
 		}
 		else {
-			// Keep the train stationary
 			trainPosition = glm::vec3(startX, startY, startZ);
 		}
 
-		// Update train's position and render
+		// update train's position and render
 		train = glm::translate(train, trainPosition);
 		train = glm::scale(train, glm::vec3(7.05f, 7.05f, 7.05f));
 		train = glm::rotate(train, glm::radians(90.0f + rotY), glm::vec3(0, 1, 0));
@@ -353,7 +339,7 @@ int main()
 		terrain.Draw(terrainShader);
 
 		// start station
-		_station = glm::translate(_station, glm::vec3(-390.0f, 40.0f, 276.0f)); // am micsorat z s a dat in dreapta // am micsorat x  s a dat in spate
+		_station = glm::translate(_station, glm::vec3(-390.0f, 40.0f, 276.0f));
 		_station = glm::scale(_station, glm::vec3(0.12f, 0.12f, 0.12f));
 		_station = glm::rotate(_station, glm::radians(90.0f), glm::vec3(0, 1, 0));
 		stationShader.setMat4("model", _station);
@@ -436,9 +422,7 @@ int main()
 		tree2Shader.setMat4("model", tree2Matrix);
 		tree2Model.Draw(tree2Shader);
 
-		//-390.0f, 40.0f, 276.0f
-		// // am micsorat z s a dat in dreapta // am micsorat x  s a dat in spate
-
+	
 
 		//tree2
 		glm::mat4 originalTree1Matrix = tree1Matrix;
@@ -450,7 +434,6 @@ int main()
 		tree1Shader.setMat4("model", tree1Matrix);
 		tree1Model.Draw(tree1Shader);
 
-		//-390.0f, 40.0f, 276.0f
 		tree1x = -210.0f;
 		tree1y = -11.0f;
 		tree1z = -270.0f;
@@ -478,54 +461,61 @@ int main()
 
 
 
+		// // am micsorat z s a dat in dreapta // am micsorat x  s a dat in spate
 
 		// abandoned station
-		float grass1x = -390.0f, grass1y = 40.0f, grass1z = 290.0f;
-		float grass1xsize = 0.2f, grass1ysize = 0.2f, grass1zsize = 0.2f;
-		grass1Matrix = glm::translate(grass1Matrix, glm::vec3(100.0f, x, -1900.0f));
-		grass1Matrix = glm::scale(grass1Matrix, glm::vec3(grass1zsize * 200, grass1ysize * 200, grass1zsize * 200));
-		grass1Matrix = glm::rotate(grass1Matrix, glm::radians(40.0f), glm::vec3(0, 1, 0));
-		grass1Shader.setMat4("model", grass1Matrix);
-		grass1Model.Draw(grass1Shader);
-
-
-		/*//grass1
-		float tree1x = -390.0f, tree1y = 40.0f, tree1z = 290.0f;
-		float tree1xsize = 0.2f, tree1ysize = 0.2f, tree1zsize = 0.2f;
-		tree1Matrix = glm::translate(tree1Matrix, glm::vec3(100.0f, x, -1900.0f));
-		tree1Matrix = glm::scale(tree1Matrix, glm::vec3(tree1zsize*200, tree1ysize*200, tree1zsize*200));
-		tree1Matrix = glm::rotate(tree1Matrix, glm::radians(40.0f), glm::vec3(0, 1, 0));
-		tree1Shader.setMat4("model", tree1Matrix);
-		tree1Model.Draw(tree1Shader);
-
-		*/
-/*
-
-		//grass3
-
-				float tree1x = -390.0f, tree1y = 40.0f, tree1z = 290.0f;
-		float tree1xsize = 0.2f, tree1ysize = 0.2f, tree1zsize = 0.2f;
-		grass1Matrix = glm::translate(grass1Matrix, glm::vec3(100.0f, x, -1900.0f));
-		grass1Matrix = glm::scale(grass1Matrix, glm::vec3(tree1zsize * 200, tree1ysize * 200, tree1zsize * 200));
-		grass1Matrix = glm::rotate(grass1Matrix, glm::radians(40.0f), glm::vec3(0, 1, 0));
-		grass1Shader.setMat4("model", grass1Matrix);
-		grass1Model.Draw(grass1Shader);
-
-
-		//tree1
-		float grass3x = -390.0f, tree1y = 40.0f, tree1z = 290.0f;
-		float tree1xsize = 0.2f, tree1ysize = 0.2f, tree1zsize = 0.2f;
-		grass1Matrix = glm::translate(grass1Matrix, glm::vec3(100.0f, x, -1900.0f));
-		grass1Matrix = glm::scale(grass1Matrix, glm::vec3(tree1zsize * 200, tree1ysize * 200, tree1zsize * 200));
-		grass1Matrix = glm::rotate(grass1Matrix, glm::radians(40.0f), glm::vec3(0, 1, 0));
-		grass1Shader.setMat4("model", grass1Matrix);
-		grass1Model.Draw(grass1Shader);
-
-
 		
+		float grass1x = 300.0f, grass1y = 31.5f, grass1z = -800.0f;
+		float grass1xsize = 8.40f, grass1ysize = 8.40f, grass1zsize = 8.40f;
+		glm::mat4 originalGrass1Matrix = grass1Matrix;
+		grass1Matrix = glm::translate(grass1Matrix, glm::vec3(grass1x, grass1y, grass1z));
+		grass1Matrix = glm::scale(grass1Matrix, glm::vec3(grass1zsize, grass1ysize, grass1zsize));
+		grass1Matrix = glm::rotate(grass1Matrix, glm::radians(30.0f), glm::vec3(0, 1, 0));
+		grass1Shader.setMat4("model", grass1Matrix);
+		grass1Model.Draw(grass1Shader);
 
-		*/
+		//eagle
+		float grass2x = 300.0f, grass2y = 231.5f, grass2z = -800.0f;
+		float grass2xsize = 0.00240f, grass2ysize = 0.00240f, grass2zsize = 0.00240f;
+		glm::mat4 originalGrass2Matrix = grass2Matrix;
+		grass2Matrix = glm::translate(grass2Matrix, glm::vec3(grass2x, grass2y, grass2z));
+		grass2Matrix = glm::scale(grass2Matrix, glm::vec3(grass2zsize, grass2ysize, grass2zsize));
+		grass2Matrix = glm::rotate(grass2Matrix, glm::radians(30.0f), glm::vec3(0, 1, 0));
+		grass2Shader.setMat4("model", grass2Matrix);
+		grass2Model.Draw(grass2Shader);
 
+
+		grass2Matrix = originalGrass2Matrix;
+		grass2x = 400.0f;
+		grass2y = 231.5f;
+		grass2z = -1000.0f;
+		grass2Matrix = glm::translate(grass2Matrix, glm::vec3(grass2x, grass2y, grass2z));
+		grass2Matrix = glm::scale(grass2Matrix, glm::vec3(grass2zsize, grass2ysize, grass2zsize));
+		grass2Matrix = glm::rotate(grass2Matrix, glm::radians(30.0f), glm::vec3(0, 1, 0));
+		grass2Shader.setMat4("model", grass2Matrix);
+		grass2Model.Draw(grass2Shader);
+		// // am micsorat z s a dat in dreapta // am micsorat x  s a dat in spate
+
+		grass2Matrix = originalGrass2Matrix;
+		grass2x = -250.0f;
+		grass2y = 100.5f;
+		grass2z = -150.0f;
+		grass2Matrix = glm::translate(grass2Matrix, glm::vec3(grass2x, grass2y, grass2z));
+		grass2Matrix = glm::scale(grass2Matrix, glm::vec3(grass2zsize, grass2ysize, grass2zsize));
+		grass2Matrix = glm::rotate(grass2Matrix, glm::radians(110.0f), glm::vec3(0, 1, 0));
+		grass2Shader.setMat4("model", grass2Matrix);
+		grass2Model.Draw(grass2Shader);
+
+		//fountain
+		float grass3x = 450.0f, grass3y =11.5f, grass3z = -400.0f;
+		float grass3xsize = 20.240f, grass3ysize = 20.240f, grass3zsize = 20.240f;
+		glm::mat4 originalGrass3Matrix = grass3Matrix;
+		grass3Matrix = glm::translate(grass3Matrix, glm::vec3(grass3x, grass3y, grass3z));
+		grass3Matrix = glm::scale(grass3Matrix, glm::vec3(grass3zsize, grass3ysize, grass3zsize));
+		grass3Matrix = glm::rotate(grass3Matrix, glm::radians(90.0f), glm::vec3(0, 1, 0));
+		grass3Shader.setMat4("model", grass3Matrix);
+		grass3Model.Draw(grass3Shader);
+		
 		if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS) // driver camera
 			key = 1;
 		if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS) // 3rd person camera
@@ -548,27 +538,22 @@ int main()
 		}
 
 		// draw skybox as last
-		glDepthFunc(GL_LEQUAL);  // change depth function so depth test passes when values are equal to depth buffer's content
+		glDepthFunc(GL_LEQUAL);  
 		skyboxShader.use();
-		view = glm::mat4(glm::mat3(camera.GetViewMatrix())); // remove translation from the view matrix
+		view = glm::mat4(glm::mat3(camera.GetViewMatrix())); 
 		skyboxShader.setMat4("view", view);
 		skyboxShader.setMat4("projection", projection);
 		// skybox cube
 		glBindVertexArray(skyboxVAO);
-		//glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 		glBindVertexArray(0);
-		glDepthFunc(GL_LESS); // set depth function back to default
-
-		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
-		// -------------------------------------------------------------------------------
+		glDepthFunc(GL_LESS); 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
 
-	// optional: de-allocate all resources once they've outlived their purpose:
-	// ------------------------------------------------------------------------
+
 	glDeleteVertexArrays(1, &skyboxVAO);
 	glDeleteBuffers(1, &skyboxVBO);
 
@@ -576,8 +561,7 @@ int main()
 	return 0;
 }
 
-// process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
-// ---------------------------------------------------------------------------------------------------------
+
 void processInput(GLFWwindow* window)
 {
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
@@ -611,15 +595,13 @@ void processInput(GLFWwindow* window)
 	}
 }
 
-// glfw: whenever the window size changed (by OS or user resize) this callback function executes
-// ---------------------------------------------------------------------------------------------
+
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
 	glViewport(0, 0, width, height);
 }
 
-// glfw: whenever the mouse moves, this callback is called
-// -------------------------------------------------------
+
 void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 {
 	if (firstMouse)
@@ -638,15 +620,13 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 	camera.ProcessMouseMovement(xoffset, yoffset);
 }
 
-// glfw: whenever the mouse scroll wheel scrolls, this callback is called
-// ----------------------------------------------------------------------
+
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
 	camera.ProcessMouseScroll(yoffset);
 }
 
-// utility function for loading a 2D texture from file
-// ---------------------------------------------------
+
 unsigned int loadTexture(char const* path)
 {
 	unsigned int textureID;
@@ -684,7 +664,6 @@ unsigned int loadTexture(char const* path)
 	return textureID;
 }
 
-// -------------------------------------------------------
 unsigned int loadCubemap(std::vector<std::string> faces)
 {
 	unsigned int textureID;

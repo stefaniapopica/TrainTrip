@@ -9,11 +9,10 @@
 #include<iostream>
 #include<cerrno>
 
-#include <stdlib.h> // necesare pentru citirea shader-elor
+#include <stdlib.h> 
 #include <stdio.h>
 #include <math.h> 
 
-//#include <GL/glew.h>
 
 #include <GLM.hpp>
 #include <gtc/matrix_transform.hpp>

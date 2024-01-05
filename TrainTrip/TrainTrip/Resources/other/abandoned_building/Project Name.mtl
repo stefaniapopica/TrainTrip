@@ -1,0 +1,32 @@
+newmtl Door_bb4da806-62e2-49d6-98c3-17fcc1b28f40
+Kd 1.000 1.000 1.000
+d 1.000
+map_Kd Door_Base_Color.jpg
+newmtl Light_Wood_19619945-8869-454e-adcf-a47424cebffb
+Kd 1.000 1.000 1.000
+d 1.000
+map_Kd Light_Wood_Base_Color.jpg
+newmtl Wall_868850f0-4a59-4374-a5cd-39f45f7baef3
+Kd 1.000 1.000 1.000
+d 1.000
+map_Kd base_basecolor.jpg
+newmtl Dark_Wood_d3a1d7cf-7250-4071-9678-6494ca5f0f22
+Kd 1.000 1.000 1.000
+d 1.000
+map_Kd Dark_Wood_Base_Color.jpg
+newmtl Fence_a9bffcba-fac8-4b4b-8fc7-e60d17c10684
+Kd 1.000 1.000 1.000
+d 1.000
+map_Kd Fence_Base_Color.jpg
+newmtl Balcony_Floor_3850e8b1-8c81-4692-9068-462d17fc907a
+Kd 1.000 1.000 1.000
+d 1.000
+map_Kd Balcony_Floor_Base_Color.jpg
+newmtl Roof_55ae749a-dd2f-44da-a0a6-6f77e9bf28d7
+Kd 1.000 1.000 1.000
+d 1.000
+map_Kd Roof_Base_Color.jpg
+newmtl White_Wood_0400fd9d-11f7-4c0d-b5f5-3e3223dd4198
+Kd 1.000 1.000 1.000
+d 1.000
+map_Kd White_Wood_Base_Color.jpg
