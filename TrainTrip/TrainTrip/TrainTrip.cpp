@@ -1,6 +1,5 @@
 ﻿#include <filesystem>
 #include <vector>
-//#include <freeglut.h>
 
 #include "Camera.h"
 #include "Shader.h"
@@ -137,6 +136,13 @@ int main()
 	Shader ndStationShader("model.vs", "model.fs");
 	Shader bvSignShader("model.vs", "model.fs");
 	Shader bucSignShader("model.vs", "model.fs");
+	Shader bearShader("model.vs", "model.fs");
+	Shader grass1Shader("model.vs", "model.fs");
+	Shader grass2Shader("model.vs", "model.fs");
+	Shader grass3Shader("model.vs", "model.fs");
+	Shader tree1Shader("model.vs", "model.fs");
+	Shader tree2Shader("model.vs", "model.fs");
+
 	Shader lightingShader("PhongLight.vs", "PhongLight.fs");
 	Shader lightCubeShader("Lamp.vs", "Lamp.fs");
 	Shader shader("ShadowMapping.vs", "ShadowMapping.fs");
@@ -163,6 +169,14 @@ int main()
 	Model secondStation(localPath.string() + "/Resources/station/source/god-knows.obj");
 	Model bvSign(localPath.string() + "/Resources/station/bvSign/ExitSign_HiPoly.obj");
 	Model bucSign(localPath.string() + "/Resources/station/bucSign/ExitSign_HiPoly.obj");
+	Model bearModel(localPath.string() + "/Resources/other/bear/source/model.obj");
+	Model grass1Model(localPath.string() + "/Resources/other/other/abandoned_building/source/Daskalio200K.obj");
+	Model grass2Model(localPath.string() + "/Resources/other/grass2/source/Grass 02.obj");
+	Model grass3Model(localPath.string() + "/Resources/other/other/abandoned_building/source/Daskalio200K.obj");
+	Model tree1Model(localPath.string() + "/Resources/other/tree2/Project Name.obj");
+	Model tree2Model(localPath.string() + "/Resources/other/tree1/Project Name.obj");
+
+
 	// configure depth map FBO
 	// -----------------------
 	const unsigned int SHADOW_WIDTH = 1024, SHADOW_HEIGHT = 1024;
@@ -194,13 +208,6 @@ int main()
 
 	std::vector<std::string> faces
 	{
-		/*textureFolder + "/right.jpg",
-		textureFolder + "/left.jpg",
-		textureFolder + "/top.jpg",
-		textureFolder + "/bottom.jpg",
-		textureFolder + "/front.jpg",
-		textureFolder + "/back.jpg"*/
-
 		textureFolder + "/_right.jpg",
 		textureFolder + "/_left.jpg",
 		textureFolder + "/_top.jpg",
@@ -309,20 +316,14 @@ int main()
 		glm::mat4 _ndStation = glm::mat4(1.0f);
 		glm::mat4 _bvSign = glm::mat4(1.0f);
 		glm::mat4 _bucSign = glm::mat4(1.0f);
+		glm::mat4 bearModelMatrix = glm::mat4(1.0f);
+		glm::mat4 grass1Matrix = glm::mat4(1.0f);
+		glm::mat4 grass2Matrix = glm::mat4(1.0f);
+		glm::mat4 grass3Matrix = glm::mat4(1.0f);
+		glm::mat4 tree1Matrix = glm::mat4(1.0f);
+		glm::mat4 tree2Matrix = glm::mat4(1.0f);
 
-		// train
-		//startY += 0.3f;
-		//if (!start)
-		//	train = glm::translate(train, glm::vec3(startX, startY, startZ));
-		//else
-		//	train = glm::translate(train, moveTrain(startX, startY, startZ, rotY, rotZ));
-		//startY -= 0.3f;
-
-		//train = glm::scale(train, glm::vec3(7.05f, 7.05f, 7.05f)); // make it a little bigger							   
-		//train = glm::rotate(train, glm::radians(90.0f + rotY), glm::vec3(0, 1, 0)); // train starts at 90 degrees rotation to face forward
-		//train = glm::rotate(train, glm::radians(0.0f + rotZ), glm::vec3(0, 0, 1));
-		//trainShader.setMat4("model", train);
-		//driverWagon.Draw(trainShader);
+	
 
 		glm::vec3 trainPosition;
 		if (start) {
@@ -378,48 +379,152 @@ int main()
 		_bvSign = glm::rotate(_bvSign, glm::radians(0.0f), glm::vec3(0, 1, 0));
 		bvSignShader.setMat4("model", _bvSign);
 		bvSign.Draw(bucSignShader);
+		//bear
+		float x = 60.5f;
+		for (int i = 1; i <= 1; i++)
+		{
+			bearModelMatrix = glm::translate(bearModelMatrix, glm::vec3(50.0f, x-32, -1710.0f)); 
+			bearModelMatrix = glm::scale(bearModelMatrix, glm::vec3(0.2f, 0.2f, 0.2f)); 
+			bearModelMatrix = glm::rotate(bearModelMatrix, glm::radians(40.0f), glm::vec3(0, 1, 0)); 
+			bearShader.setMat4("model", bearModelMatrix);
+			bearModel.Draw(bearShader);
+			x += i * 10;
+
+		}
+
+		
+		//tree1
+		float tree2x = -330.0f, tree2y = 35.5f, tree2z = -1900.0f;
+		float tree2xsize = 0.40f, tree2ysize = 0.40f, tree2zsize = 0.40f;
+		glm::mat4 originalTree2Matrix = tree2Matrix;
+		tree2Matrix = glm::translate(tree2Matrix, glm::vec3(tree2x,tree2y,tree2z));
+		tree2Matrix = glm::scale(tree2Matrix, glm::vec3(tree2zsize , tree2ysize , tree2zsize ));
+		tree2Matrix = glm::rotate(tree2Matrix, glm::radians(40.0f), glm::vec3(0, 1, 0));
+		tree2Shader.setMat4("model", tree2Matrix);
+		tree2Model.Draw(tree2Shader);
+		
+		tree2x = -330.0f;
+		tree2y = 40.5f;
+		tree2z = -1700.0f;
+		tree2Matrix = originalTree2Matrix;
+		tree2Matrix = glm::translate(tree2Matrix, glm::vec3(tree2x, tree2y, tree2z));
+		tree2Matrix = glm::scale(tree2Matrix, glm::vec3(tree2zsize, tree2ysize, tree2zsize));
+		tree2Matrix = glm::rotate(tree2Matrix, glm::radians(130.0f), glm::vec3(0, 1, 0));
+		tree2Shader.setMat4("model", tree2Matrix);
+		tree2Model.Draw(tree2Shader);
+
+		tree2x = 260.0f;
+		tree2y = 25.0f;
+		tree2z = -1590.0f;
+		tree2Matrix = originalTree2Matrix;
+		tree2Matrix = glm::translate(tree2Matrix, glm::vec3(tree2x, tree2y, tree2z));
+		tree2Matrix = glm::scale(tree2Matrix, glm::vec3(tree2zsize, tree2ysize, tree2zsize));
+		tree2Matrix = glm::rotate(tree2Matrix, glm::radians(220.0f), glm::vec3(0, 1, 0));
+		tree2Shader.setMat4("model", tree2Matrix);
+		tree2Model.Draw(tree2Shader);
+
+		tree2x = -320.0f;
+		tree2y = -20.0f;
+		tree2z = 390.0f;
+		tree2xsize = 0.35f;
+		tree2ysize = 0.35f;
+		tree2zsize = 0.35f;
+		tree2Matrix = originalTree2Matrix;
+		tree2Matrix = glm::translate(tree2Matrix, glm::vec3(tree2x, tree2y, tree2z));
+		tree2Matrix = glm::scale(tree2Matrix, glm::vec3(tree2zsize, tree2ysize, tree2zsize));
+		tree2Matrix = glm::rotate(tree2Matrix, glm::radians(310.0f), glm::vec3(0, 1, 0));
+		tree2Shader.setMat4("model", tree2Matrix);
+		tree2Model.Draw(tree2Shader);
+
+		//-390.0f, 40.0f, 276.0f
+		// // am micsorat z s a dat in dreapta // am micsorat x  s a dat in spate
 
 
-		//// 1. render depth of scene to texture (from light's perspective)
-		//// --------------------------------------------------------------
-		//	glm::mat4 lightProjection, lightView;
-		//glm::mat4 lightSpaceMatrix;
-		//float near_plane = 1.0f, far_plane = 7.5f;
-		////lightProjection = glm::perspective(glm::radians(45.0f), (GLfloat)SHADOW_WIDTH / (GLfloat)SHADOW_HEIGHT, near_plane, far_plane); // note that if you use a perspective projection matrix you'll have to change the light position as the current light position isn't enough to reflect the whole scene
-		//lightProjection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f, near_plane, far_plane);
-		//lightView = glm::lookAt(lightPos, glm::vec3(0.0f), glm::vec3(0.0, 1.0, 0.0));
-		//lightSpaceMatrix = lightProjection * lightView;
-		//// render scene from light's point of view
-		//simpleDepthShader.use();
-		//simpleDepthShader.setMat4("lightSpaceMatrix", lightSpaceMatrix);
+		//tree2
+		glm::mat4 originalTree1Matrix = tree1Matrix;
+		float tree1x = 330.0f, tree1y = 17.0f, tree1z = -1850.0f;
+		float tree1xsize = 0.4f, tree1ysize = 0.4f, tree1zsize = 0.4f;
+		tree1Matrix = glm::translate(tree1Matrix, glm::vec3(tree1x, tree1y, tree1z));
+		tree1Matrix = glm::scale(tree1Matrix, glm::vec3(tree1zsize , tree1ysize , tree1zsize ));
+		tree1Matrix = glm::rotate(tree1Matrix, glm::radians(80.0f), glm::vec3(0, 1, 0)); //am marit gradele si fata s a invartit spre dreapta
+		tree1Shader.setMat4("model", tree1Matrix);
+		tree1Model.Draw(tree1Shader);
 
-		//glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
-		//glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
-		//glClear(GL_DEPTH_BUFFER_BIT);
-		//glActiveTexture(GL_TEXTURE0);
-		//glBindTexture(GL_TEXTURE_2D, cubemapTexture);
-		//
+		//-390.0f, 40.0f, 276.0f
+		tree1x = -210.0f;
+		tree1y = -11.0f;
+		tree1z = -270.0f;
+		tree1Matrix = originalTree1Matrix;
+		tree1Matrix = glm::translate(tree1Matrix, glm::vec3(tree1x, tree1y, tree1z));
+		tree1Matrix = glm::scale(tree1Matrix, glm::vec3(tree1zsize, tree1ysize, tree1zsize));
+		tree1Matrix = glm::rotate(tree1Matrix, glm::radians(315.0f), glm::vec3(0, 1, 0)); //am marit gradele si fata s a invartit spre dreapta
+		tree1Shader.setMat4("model", tree1Matrix);
+		tree1Model.Draw(tree1Shader);
 
-		//// reset viewport
-		//glViewport(0, 0, SCR_WIDTH, SCR_HEIGHT);
-		//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		// // am micsorat z s a dat in dreapta // am micsorat x  s a dat in spate
 
-		//// 2. render scene as normal using the generated depth/shadow map  
-		//
-		//glViewport(0, 0, SCR_WIDTH, SCR_HEIGHT);
-		//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		//shader.use();
-		//shader.setMat4("projection", projection);
-		//shader.setMat4("view", view);
-		//// set light uniforms
-		//shader.setVec3("viewPos", camera.Position);
-		//shader.setVec3("lightPos", lightPos);
-		//shader.setMat4("lightSpaceMatrix", lightSpaceMatrix);
-		//glActiveTexture(GL_TEXTURE0);
-		//glBindTexture(GL_TEXTURE_2D, cubemapTexture);
-		//glActiveTexture(GL_TEXTURE1);
-		//glBindTexture(GL_TEXTURE_2D, depthMap);
+		tree1x = -100.0f;
+		tree1y = -18.0f;
+		tree1z = 160.0f;
+		tree1xsize = 0.35f;
+		tree1ysize = 0.35f;
+		tree1zsize = 0.35f;
+		tree1Matrix = originalTree1Matrix;
+		tree1Matrix = glm::translate(tree1Matrix, glm::vec3(tree1x, tree1y, tree1z));
+		tree1Matrix = glm::scale(tree1Matrix, glm::vec3(tree1zsize, tree1ysize, tree1zsize));
+		tree1Matrix = glm::rotate(tree1Matrix, glm::radians(-7.0f), glm::vec3(0, 1, 0)); //am marit gradele si fata s a invartit spre dreapta
+		tree1Shader.setMat4("model", tree1Matrix);
+		tree1Model.Draw(tree1Shader);
 
+
+
+
+		// abandoned station
+		float grass1x = -390.0f, grass1y = 40.0f, grass1z = 290.0f;
+		float grass1xsize = 0.2f, grass1ysize = 0.2f, grass1zsize = 0.2f;
+		grass1Matrix = glm::translate(grass1Matrix, glm::vec3(100.0f, x, -1900.0f));
+		grass1Matrix = glm::scale(grass1Matrix, glm::vec3(grass1zsize * 200, grass1ysize * 200, grass1zsize * 200));
+		grass1Matrix = glm::rotate(grass1Matrix, glm::radians(40.0f), glm::vec3(0, 1, 0));
+		grass1Shader.setMat4("model", grass1Matrix);
+		grass1Model.Draw(grass1Shader);
+
+
+		/*//grass1
+		float tree1x = -390.0f, tree1y = 40.0f, tree1z = 290.0f;
+		float tree1xsize = 0.2f, tree1ysize = 0.2f, tree1zsize = 0.2f;
+		tree1Matrix = glm::translate(tree1Matrix, glm::vec3(100.0f, x, -1900.0f));
+		tree1Matrix = glm::scale(tree1Matrix, glm::vec3(tree1zsize*200, tree1ysize*200, tree1zsize*200));
+		tree1Matrix = glm::rotate(tree1Matrix, glm::radians(40.0f), glm::vec3(0, 1, 0));
+		tree1Shader.setMat4("model", tree1Matrix);
+		tree1Model.Draw(tree1Shader);
+
+		*/
+/*
+
+		//grass3
+
+				float tree1x = -390.0f, tree1y = 40.0f, tree1z = 290.0f;
+		float tree1xsize = 0.2f, tree1ysize = 0.2f, tree1zsize = 0.2f;
+		grass1Matrix = glm::translate(grass1Matrix, glm::vec3(100.0f, x, -1900.0f));
+		grass1Matrix = glm::scale(grass1Matrix, glm::vec3(tree1zsize * 200, tree1ysize * 200, tree1zsize * 200));
+		grass1Matrix = glm::rotate(grass1Matrix, glm::radians(40.0f), glm::vec3(0, 1, 0));
+		grass1Shader.setMat4("model", grass1Matrix);
+		grass1Model.Draw(grass1Shader);
+
+
+		//tree1
+		float grass3x = -390.0f, tree1y = 40.0f, tree1z = 290.0f;
+		float tree1xsize = 0.2f, tree1ysize = 0.2f, tree1zsize = 0.2f;
+		grass1Matrix = glm::translate(grass1Matrix, glm::vec3(100.0f, x, -1900.0f));
+		grass1Matrix = glm::scale(grass1Matrix, glm::vec3(tree1zsize * 200, tree1ysize * 200, tree1zsize * 200));
+		grass1Matrix = glm::rotate(grass1Matrix, glm::radians(40.0f), glm::vec3(0, 1, 0));
+		grass1Shader.setMat4("model", grass1Matrix);
+		grass1Model.Draw(grass1Shader);
+
+
+		
+
+		*/
 
 		if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS) // driver camera
 			key = 1;
@@ -427,10 +532,6 @@ int main()
 			key = 2;
 		if (glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS) // free camera
 			key = 3;
-		//if (glfwGetKey(window, GLFW_KEY_ENTER) == GLFW_PRESS) // start train
-		//	start = 1;
-		//if (glfwGetKey(window, GLFW_KEY_BACKSPACE) == GLFW_PRESS) // stop train
-		//	start = 0;
 
 		switch (key)
 		{
@@ -514,8 +615,6 @@ void processInput(GLFWwindow* window)
 // ---------------------------------------------------------------------------------------------
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
-	// make sure the viewport matches the new window dimensions; note that width and 
-	// height will be significantly larger than specified on retina displays.
 	glViewport(0, 0, width, height);
 }
 
@@ -585,14 +684,6 @@ unsigned int loadTexture(char const* path)
 	return textureID;
 }
 
-// loads a cubemap texture from 6 individual texture faces
-// order:
-// +X (right)
-// -X (left)
-// +Y (top)
-// -Y (bottom)
-// +Z (front) 
-// -Z (back)
 // -------------------------------------------------------
 unsigned int loadCubemap(std::vector<std::string> faces)
 {
